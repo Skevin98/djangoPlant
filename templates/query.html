@@ -1,0 +1,28 @@
+<div class="col queries" id="test" >
+    
+    {%for index,p in plants%}
+    <div class="card border-light bg-light shadow p-1 mb-3">
+        <div class="row g-0 query">
+            <a href="{{index}}" class="stretched-link"></a>
+            <div class="col-3 text-center text-md-start ">
+                <img src="{%if p.image_url%} {{p.image_url}} {%else%} /static/img/unavailable.png {%endif%}" alt="image" class="image rounded">
+            </div>
+            <div class="col-9">
+                <div class="card-body">
+                    <h4>{{p.scientific_name}}</h4>
+                    <p class="card-text">{{p.common_name}}</p>
+                </div>
+                
+            </div>
+
+        </div>
+
+    </div> 
+
+    {%endfor%}
+
+</div>
+    
+
+    
+    

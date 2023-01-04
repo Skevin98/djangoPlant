@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Plantopedia</title>
+</head>
+<body>
+
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/14273d579a.js" crossorigin="anonymous" defer></script>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous" defer></script>
+    
+    
+    
+    <script type="text/javascript" defer>
+        
+        $(document).ready(function(){
+
+            $(".btn-success").on('click', function (e) {
+                $(".btn-success").text("clicked !");
+                console.log("---- "+$('#searchInput').val());
+                $().submit()
+                $("#queueForm").submit(function(e){
+                    e.preventDefault();
+                    search();
+                });
+            });
+        });
+        
+        
+
+        function search()
+        {
+            
+            var field = $('#searchInput').val();
+            
+            $.ajax(
+                {
+                    url : "/plants/ajax/index/",
+                    type : 'GET',
+                    data : ({queue : field}),
+                    success : function($data, $textStatus, $XMLHttpRequest){
+                        if($data != ''){
+                            $('#test').replaceWith($data);                       
+                        }
+
+                    },
+                    error : function($data, $textStatus, $XMLHttpRequest){
+                        console.log("error");
+                    }
+                }
+            );
+            
+        }
+
+    </script>
+    
+    
+    <header>
+        <nav class="navbar navbar-expand-md bg-success navbar-light fixed-top">
+            <div class="container">
+                <a href="/index.html" class="navbar-brand text-dark text-uppercase fw-bold">
+                    <span class="bg-secondary bg-gradient p-1 rounded-3 text-light">Plantopedia</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    
+                    <ul class="navbar-nav" >
+                        <li class="nav-item">
+                            <a class="nav-link" href="#johndoe">Qui suis-je ?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#expertise">Expertises</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#portfolio">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div> -->
+                
+            </div>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        {%block content%}
+
+        <section class="px-2 py-5">
+            
+            <div class="row py-4 align-items-center">
+                <div class="col px-2 " id="searchcolumn">
+                    <h1 class="mb-3">
+                        Bienvenue sur PlantoPedia, le meilleur site de recherche de plantes !
+                    </h1>
+                    <h4 class="fw-light mb-3">
+                        Recherchez des plantes selon des mots-clés :
+                    </h4>
+
+                    <form action="/plants/index/" method="get" id="queueForm">
+                        
+                        <input id="searchInput" class="form-control mb-3" type="text" name="queue" title="queue" placeholder="ex : red"/>
+                        <button type="submit" class="btn btn-success w-100" disabled>Rechercher !</button>
+                    </form>
+
+                </div>
+
+                {% include "query.html" with plants=plants %}
+
+            </div>
+            
+        </section>
+
+        {%endblock content%}
+
+    </main>
+
+
+
+    <footer class="border-top fixed-bottom bg-light">
+        <div class="container py-2">
+            <div class="row gy-4 align-items-center">
+                <div class="col-4 fw-bold">
+                    <!-- <div class="bg-secondary py-4"></div> -->
+                    <!-- <button class="btn btn-primary fw-bold p-1">JOHN</button> DOE -->
+                    <a class="navbar-brand text-dark text-uppercase fw-bold" href="#">
+                        <span class="bg-secondary bg-gradient p-1 rounded-3 text-light">Plantopedia</span>
+                      </a>
+                </div>
+                <div class="col-4 text-md-center">
+                    <!-- <div class="bg-secondary py-4"></div> -->
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                          <a href="#" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modal1">Mentions légales</a>
+                        </li>
+                      </ul>
+                </div>
+                <div class="col-4 text-md-end">
+                    <!-- <div class="bg-secondary py-4"></div> -->
+                    <ul class="list-inline mb-0">
+                        <!-- <li class="list-inline-item">
+                            <a class="btn" href="mon lien linkedin" data-bs-toggle="tooltip" data-bs-placement="top" title="Linkedin" target="_blank">
+                                <i class="fab fa-linkedin fa-2x"></i>
+                            </a>
+                        </li> -->
+                        <li class="list-inline-item">
+                            <a class="btn" href="mon lien intagram" data-bs-toggle="tooltip" data-bs-placement="top" title="Instagram" target="_blank">
+                                <i class="fab fa-instagram-square fa-2x"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn" href="mon lien Twitter" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" target="_blank">
+                                <i class="fab fa-twitter-square fa-2x"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <div class="modal fade" id="modal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal1Label">Mentions légales</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Site Web réalisé pour l'EFM Python. Merci à <a href="https://floracodex.com/" target="_blank" >Flora Codex</a> pour leur formidable API !
+                </div>
+            </div>
+        </div>
+      </div>
+    
+</body>
+</html>
