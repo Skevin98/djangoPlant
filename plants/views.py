@@ -70,7 +70,7 @@ def detail(request, id):
         # Les données des 3 premieres fleurs sont disponibles dans datatest.py
         
         #voir la fonction index comme exemple 
-        return HttpResponse(flower.__str__()) #Effacer ce return et ecrire le votre
+        return render(request,'detail.html',{'flower':flower}) #Effacer ce return et ecrire le votre
         
 # Create your views here.
  
