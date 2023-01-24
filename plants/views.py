@@ -73,4 +73,6 @@ def detail(request, id):
         return HttpResponse(flower.__str__()) #Effacer ce return et ecrire le votre
         
 # Create your views here.
+def home(request):
+    return render(request,'home.html')
  

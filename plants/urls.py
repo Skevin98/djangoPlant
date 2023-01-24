@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from plants.views import index, ajax_index, detail
+from plants.views import index, ajax_index, detail,home
 
 urlpatterns = [
     path("index/", index ),
@@ -10,6 +10,7 @@ urlpatterns = [
     #(0 = 1ere fleur rouge, 1 = 2eme fleur rouge, 2 = 3eme fleur rouge)
     #il est passé en argument à la View detail (voir views.py)
     path('index/<int:id>/', detail),
+    path('home',home),
 ]
 
 
