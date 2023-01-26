@@ -5,19 +5,19 @@
 <section class="px-2 py-5">
  
     <div class="m-4">
-        <div class="card" style="max-width: 500px;">
-            <div class="row g-0">
-                <div class="col-sm-5" style="width: 200px;height: 300px;">
-                    <img src="{%if flower.image_url%} {{flower.image_url}} {%else%} /static/img/unavailable.png {%endif%}" alt="image" class="image rounded">
+        <div class="card">
+            <div class="row g-0 text-center align-items-center">
+                <div class="col-sm-5">
+                    <img class="img-fluid" style="height: 450px;" src="{%if flower.image_url%} {{flower.image_url}} {%else%} /static/img/unavailable.png {%endif%}" alt="image" class="image rounded">
                 </div>
-                <div class="col-sm-7">
-                    <div class="card-body">
+                <div class="col-sm-7 ">
+                    <div class="card-body ">
                         
                         <h5 class="card-title">{{flower.common_name}}</h5>
                         <p class="card-text">Family: {{flower.family}}</p><br>
                         <p class="card-text">Scientific Name: {{flower.scientific_name}}</p><br>
                         <p class="card-text">Genus: {{flower.genus}}</p><br>
-                        <a href="#" class="btn btn-primary stretched-link">BACK</a>
+                        <a href="/plants/index/" class="btn btn-success w-100">Retour</a>
                     </div>
                 </div>
             </div>

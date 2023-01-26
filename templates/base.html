@@ -26,10 +26,8 @@
         
         $(document).ready(function(){
 
-            $(".btn-success").on('click', function (e) {
-                $(".btn-success").text("clicked !");
+            $(".btn-success").on('click', function (e) {             
                 console.log("---- "+$('#searchInput').val());
-                $().submit()
                 $("#queueForm").submit(function(e){
                     e.preventDefault();
                     search();
@@ -120,7 +118,7 @@
                     <form action="/plants/index/" method="get" id="queueForm">
                         
                         <input id="searchInput" class="form-control mb-3" type="text" name="queue" title="queue" placeholder="ex : red"/>
-                        <button type="submit" class="btn btn-success w-100" disabled>Rechercher !</button>
+                        <button type="submit" class="btn btn-success w-100">Rechercher !</button>
                     </form>
 
                 </div>
