@@ -73,4 +73,6 @@ def detail(request, id):
         return render(request,'detail.html',{'flower':flower}) #Effacer ce return et ecrire le votre
         
 # Create your views here.
+def home(request):
+    return render(request,'home.html')
  
